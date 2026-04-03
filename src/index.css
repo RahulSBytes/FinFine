@@ -1,0 +1,262 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+body{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+
+@theme {
+  /* --- Brand --- */
+  --color-brand-50:  #e6f4ee;
+  --color-brand-100: #c0e4d2;
+  --color-brand-300: #5dbb91;
+  --color-brand-500: #1a7f5a;
+  --color-brand-600: #15694a;
+  --color-brand-700: #0f5238;
+  --color-brand-900: #0d2b1f;
+
+  /* --- Neutrals Light --- */
+  --color-light-50:  #ffffff;
+  --color-light-100: #fdfdfd;
+  --color-light-200: #f7f8fa;
+  --color-light-300: #f0f3f7;
+  --color-light-400: #e8ecf0;
+  --color-light-500: #d1d9e0;
+  --color-light-600: #9ca3af;
+  --color-light-700: #4b5563;
+  --color-light-800: #1f2937;
+  --color-light-900: #0f1117;
+
+  /* --- Neutrals Dark --- */
+  --color-dark-50:  #f1f3f7;
+  --color-dark-100: #9ca3af;
+  --color-dark-200: #4b5563;
+  --color-dark-300: #2e3448;
+  --color-dark-400: #252a38;
+  --color-dark-500: #1e2230;
+  --color-dark-600: #151820;
+  --color-dark-700: #111318;
+  --color-dark-800: #0d0f12;
+  --color-dark-900: #080a0d;
+
+  /* --- Semantic --- */
+  --color-income-light:    #16a34a;
+  --color-income-bg:       #dcfce7;
+  --color-income-dark:     #22c55e;
+  --color-income-bg-dark:  #052e16;
+
+  --color-expense-light:   #dc2626;
+  --color-expense-bg:      #fee2e2;
+  --color-expense-dark:    #ef4444;
+  --color-expense-bg-dark: #450a0a;
+
+  --color-warning-light:   #d97706;
+  --color-warning-bg:      #fef3c7;
+  --color-warning-dark:    #fbbf24;
+  --color-warning-bg-dark: #451a03;
+
+  --color-info-light:      #2563eb;
+  --color-info-bg:         #dbeafe;
+  --color-info-dark:       #60a5fa;
+  --color-info-bg-dark:    #1e3a5f;
+
+  /* --- Chart Colors --- */
+  --color-chart-1: #1a7f5a;
+  --color-chart-2: #3b82f6;
+  --color-chart-3: #f59e0b;
+  --color-chart-4: #8b5cf6;
+  --color-chart-5: #ec4899;
+  --color-chart-6: #14b8a6;
+
+  --color-chart-1-dark: #22a06b;
+  --color-chart-2-dark: #60a5fa;
+  --color-chart-3-dark: #fbbf24;
+  --color-chart-4-dark: #a78bfa;
+  --color-chart-5-dark: #f472b6;
+  --color-chart-6-dark: #2dd4bf;
+
+  /* --- Shadows --- */
+  --shadow-card-light:
+    0px 1px 3px 0px rgba(0, 0, 0, 0.06),
+    0px 1px 2px 0px rgba(0, 0, 0, 0.04);
+  --shadow-card-dark:
+    0px 1px 3px 0px rgba(0, 0, 0, 0.4),
+    0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  --shadow-dropdown:
+    0px 8px 24px 0px rgba(0, 0, 0, 0.08),
+    0px 2px 8px 0px rgba(0, 0, 0, 0.04);
+
+  /* --- Border Radius --- */
+  --radius-sm:  6px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
+  --radius-2xl: 20px;
+
+  /* --- Typography --- */
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* --- Breakpoints --- */
+  --breakpoint-xs: 420px;
+}
+
+
+/* ============================================================
+   SEMANTIC UTILITY CLASSES
+   ============================================================ */
+
+/* --- Backgrounds --- */
+@utility bg-page        { @apply bg-light-200 dark:bg-dark-800; }
+@utility bg-surface     { @apply bg-light-50  dark:bg-dark-600; }
+@utility bg-surface-2   { @apply bg-light-300 dark:bg-dark-500; }
+@utility bg-sidebar     { @apply bg-light-50  dark:bg-dark-700; }
+@utility bg-brand-subtle { @apply bg-brand-50 dark:bg-brand-900; }
+
+/* --- Borders --- */
+@utility border-default { @apply border-light-400 dark:border-dark-400; }
+@utility border-strong  { @apply border-light-500 dark:border-dark-300; }
+
+/* --- Text --- */
+@utility text-heading { @apply text-light-900 dark:text-dark-50;  }
+@utility text-body    { @apply text-light-700 dark:text-dark-100; }
+@utility text-muted   { @apply text-light-600 dark:text-dark-300; }
+@utility text-brand   { @apply text-brand-500 dark:text-brand-300; }
+
+/* --- Semantic Text --- */
+@utility text-income  { @apply text-income-light  dark:text-income-dark;  }
+@utility text-expense { @apply text-expense-light dark:text-expense-dark; }
+@utility text-warning { @apply text-warning-light dark:text-warning-dark; }
+@utility text-info    { @apply text-info-light    dark:text-info-dark;    }
+
+/* --- Badges --- */
+@utility badge-income  { @apply bg-income-bg  text-income-light  dark:bg-income-bg-dark  dark:text-income-dark;  }
+@utility badge-expense { @apply bg-expense-bg text-expense-light dark:bg-expense-bg-dark dark:text-expense-dark; }
+@utility badge-warning { @apply bg-warning-bg text-warning-light dark:bg-warning-bg-dark dark:text-warning-dark; }
+@utility badge-info    { @apply bg-info-bg    text-info-light    dark:bg-info-bg-dark    dark:text-info-dark;    }
+
+/* --- Cards --- */
+@utility card {
+  @apply bg-surface border border-default rounded-lg shadow-card-light dark:shadow-card-dark;
+}
+
+@utility card-hover {
+  @apply card hover:bg-surface-2 transition-colors duration-200;
+}
+
+/* --- Layout --- */
+@utility flex-center  { @apply flex justify-center  items-center; }
+@utility flex-between { @apply flex justify-between items-center; }
+@utility flex-start   { @apply flex justify-start   items-center; }
+@utility flex-end     { @apply flex justify-end     items-center; }
+
+/* --- Typography Scale --- */
+@utility text-h1      { @apply text-[30px] font-bold     leading-[42px] tracking-tight; }
+@utility text-h2      { @apply text-[24px] font-semibold leading-[32px]; }
+@utility text-h3      { @apply text-[20px] font-semibold leading-[28px]; }
+@utility text-body-lg { @apply text-[16px] font-normal   leading-[24px]; }
+@utility text-body-md { @apply text-[14px] font-normal   leading-[20px]; }
+@utility text-body-sm { @apply text-[12px] font-normal   leading-[16px]; }
+@utility text-label   { @apply text-[11px] font-medium   leading-[14px] tracking-wide uppercase; }
+
+/* --- Buttons --- */
+@utility btn-primary {
+  @apply bg-brand-500 hover:bg-brand-600 active:bg-brand-700
+         text-white font-medium rounded-lg px-4 py-2
+         transition-colors duration-200 cursor-pointer;
+}
+
+@utility btn-secondary {
+  @apply bg-surface-2 hover:bg-light-400 dark:hover:bg-dark-400
+         text-body border border-default
+         font-medium rounded-lg px-4 py-2
+         transition-colors duration-200 cursor-pointer;
+}
+
+@utility btn-danger {
+  @apply bg-expense-light hover:bg-red-700
+         dark:bg-expense-dark dark:hover:bg-red-500
+         text-white font-medium rounded-lg px-4 py-2
+         transition-colors duration-200 cursor-pointer;
+}
+
+@utility btn-ghost {
+  @apply bg-transparent hover:bg-surface-2
+         text-body font-medium rounded-lg px-4 py-2
+         transition-colors duration-200 cursor-pointer;
+}
+
+/* --- Input --- */
+@utility input-base {
+  @apply w-full bg-surface-2 border border-default rounded-md px-3 py-2
+         text-heading placeholder:text-muted text-body-md
+         focus:outline-none focus:border-brand-500 dark:focus:border-brand-300
+         transition-colors duration-200;
+}
+
+/* --- Focus --- */
+@utility no-focus {
+  @apply focus-visible:ring-0! focus-visible:ring-transparent! focus-visible:ring-offset-0!;
+}
+
+/* --- Brand Gradient --- */
+@utility brand-gradient {
+  background: linear-gradient(129deg, #1a7f5a 0%, #22a06b 100%);
+}
+
+@utility brand-text-gradient {
+  background: linear-gradient(129deg, #1a7f5a 0%, #22a06b 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* --- Scrollbar --- */
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-light-500) transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar       { width: 3px; height: 3px; }
+.scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+.scrollbar-thin::-webkit-scrollbar-thumb { background: var(--color-light-500); border-radius: 99px; }
+
+
+/* ============================================================
+   GLOBAL BASE STYLES
+   ============================================================ */
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-light-400 dark:border-dark-400;
+  }
+
+  body {
+    @apply bg-page text-body font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-heading;
+  }
+
+  ::selection {
+    @apply bg-brand-100 text-brand-700;
+  }
+}
