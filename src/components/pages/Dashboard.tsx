@@ -2,6 +2,8 @@ import SquareShapes from "../wrapper/SquareShapes";
 import { transactions } from "../../constants/dummyTransactions";
 import { getIcon } from "../mini-components/getIcon";
 import { data1 } from "../../constants/constants";
+import BalanceChart from "../mini-components/BalanceChart";
+import SpendingChart from "../mini-components/SpendingChart";
 
 function Dashboard() {
   return (
@@ -19,13 +21,13 @@ function Dashboard() {
         <SquareShapes>
           <h3 className="mb-2">Balance Trend</h3>
           <div className="">
-            {/* <BalanceChart /> */}
+            <BalanceChart />
           </div>
         </SquareShapes>
         <SquareShapes>
           <h3 className="mb-2">Spending Breadown</h3>
           <div className="">
-            {/* <SpendingChart /> */}
+            <SpendingChart />
           </div>
         </SquareShapes>
       </div>
