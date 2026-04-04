@@ -197,7 +197,7 @@ body{
   @apply w-full bg-surface-2 border border-default rounded-md px-3 py-2
          text-heading placeholder:text-muted text-body-md
          focus:outline-none focus:border-brand-500 dark:focus:border-brand-300
-         transition-colors duration-200;
+         transition-colors duration-200 mt-1.5;
 }
 
 /* --- Focus --- */

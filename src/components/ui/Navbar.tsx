@@ -1,6 +1,6 @@
 import { Menu, Moon, Sun, X } from "lucide-react";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { navs } from "../../constants/constants.ts";
 
 function Navbar() {
@@ -8,10 +8,10 @@ function Navbar() {
   const [isDark, setIsDark] = useState(false);
 
   return (
-    <nav className="border border-strong flex-between h-12 px-3">
-      <div className="text-xl font-semibold">
+    <nav className="border border-strong flex-between h-12 px-3  sticky top-0 z-40 bg-surface-2">
+      <Link to={'/'} className="text-xl font-semibold">
         Fin<span className="text-brand ">Flow</span>
-      </div>
+      </Link>
       <div className="flex gap-4">
         <div
           className="cursor-pointer"
@@ -28,7 +28,7 @@ function Navbar() {
       </div>
 
       {menuOpen && (
-        <section className=" w-full h-screen absolute top-0 right-0 bg-white/20">
+        <section className=" w-full h-screen absolute z-30 top-0 right-0 bg-white/20">
           <div className="h-full bg-surface p-4 w-full max-w-96 absolute right-0 border-l border-strong">
             <div
               className=" flex justify-end"
