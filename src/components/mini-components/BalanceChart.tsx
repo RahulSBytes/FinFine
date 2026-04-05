@@ -19,7 +19,7 @@ const data = [
 
 export default function BalanceChart() {
   return (
-    <ResponsiveContainer width="100%" height={200}>
+    <ResponsiveContainer  width="100%" height={200}>
       <BarChart data={data} barSize={28}>
         <CartesianGrid
           strokeDasharray="3 3"

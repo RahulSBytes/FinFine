@@ -14,7 +14,7 @@ const data = [
 const COLORS = ["#1A7F5A", "#3B82F6", "#F59E0B", "#8B5CF6", "#EC4899"]
 
 export default function SpendingChart (){
-  return <ResponsiveContainer width="100%" height={220}>
+  return <ResponsiveContainer width="100%" height={240}>
     <PieChart>
       <Pie
         data={data}

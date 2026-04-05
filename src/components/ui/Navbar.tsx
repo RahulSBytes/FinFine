@@ -40,6 +40,7 @@ function Navbar() {
               {navs.map(({ to, label }) => (
                 <li
                   key={to}
+                  onClick={() => setMenuOpen(false)}
                   className=" rounded-sm p-2 bg-surface cursor-pointer"
                 >
                   <NavLink
