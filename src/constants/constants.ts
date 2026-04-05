@@ -27,10 +27,10 @@
 
 
   export const navs:Navs = [
+    { label: "Dashboard", to: "/" },
     { label: "Transaction", to: "transactions" },
     { label: "Insights", to: "insights" },
     { label: "Add Transaction", to: "add" },
-    { label: "Dashboard", to: "/" },
   ];
 
 

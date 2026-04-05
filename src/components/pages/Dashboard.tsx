@@ -7,66 +7,83 @@ import SpendingChart from "../mini-components/SpendingChart";
 
 function Dashboard() {
   return (
-    <div className="flex-1 flex-col p-4">
-      <div className="grid grid-cols-2 gap-2">
+    <div className="flex flex-col gap-4 p-4 lg:p-6">
+
+     
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {data1.map(({ title, amount, conclution }) => (
-          <SquareShapes >
-            <h4>{title}</h4>
-            <span>{amount}</span>
-            <p>{conclution}</p>
+          <SquareShapes key={title} className="flex flex-col gap-1">
+            <span className="text-label text-muted">{title}</span>
+            <span className="text-h2 text-heading font-bold">{amount}</span>
+            <span className="text-body-sm text-muted">{conclution}</span>
           </SquareShapes>
         ))}
       </div>
-      <div className="flex gap-3 flex-col my-3">
+
+     
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         <SquareShapes>
-          <h3 className="mb-2">Balance Trend</h3>
-          <div className="border border-zinc-600 " >
-            <BalanceChart />
-          </div>
+          <h3 className="text-body-md font-semibold text-heading mb-4">
+            Balance Trend
+          </h3>
+          <BalanceChart />
         </SquareShapes>
-        <SquareShapes >
-          <h3 className="mb-2">Spending Breadown</h3>
-          <div >
-            <SpendingChart />
-          </div>
+
+        <SquareShapes>
+          <h3 className="text-body-md font-semibold text-heading mb-4">
+            Spending Breakdown
+          </h3>
+          <SpendingChart />
         </SquareShapes>
       </div>
 
-      <div>
-        <SquareShapes >
-          <h3 className="mb-3">Recent Transaction</h3>
-          <section className="flex gap-1.5 flex-col">
-            {transactions
-              .slice(0, 3)
-              .map(({ id, title, category, type, amount, date }) => (
-                <div
-                  key={id}
-                  className="border border-strong px-4 py-2 flex-center gap-2 rounded-lg"
-                >
-                  <div className="border border-strong w-10 aspect-square flex-center h-fit rounded-lg">
-                    {getIcon(category)}
-                  </div>
-                  <div className="flex flex-col flex-1">
-                    <h5 >{title}</h5>
-                    <span className="text-body">{category}</span>
-                  </div>
-                  <div className="flex flex-col items-end">
-                    <span
-                      className={`text-sm font-semibold ${type == "income" ? "text-income" : "text-expense"}`}
-                    >
-                      {type == "income" ? "+" : "-"} &#8377; {amount}
-                    </span>
-                    <span className="text-muted text-xs font-semibold">
-                      {date}
-                    </span>
-                  </div>
+     
+      <SquareShapes>
+        <div className="flex-between mb-4">
+          <h3 className="text-body-md font-semibold text-heading">
+            Recent Transactions
+          </h3>
+          <button className="text-body-sm text-brand hover:underline">
+            View all
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          {transactions
+            .slice(0, 5)
+            .map(({ id, title, category, type, amount, date }) => (
+              <div
+                key={id}
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-surface-2 transition-colors duration-200"
+              >
+                {/* Icon */}
+                <div className="w-9 h-9 rounded-lg bg-surface-2 border border-default flex-center flex-shrink-0">
+                  <span className="text-base">{getIcon(category)}</span>
                 </div>
-              ))}
-          </section>
-        </SquareShapes>
-      </div>
+
+
+                <div className="flex flex-col flex-1 min-w-0">
+                  <span className="text-body-sm font-medium text-heading truncate">
+                    {title}
+                  </span>
+                  <span className="text-body-sm text-muted">{category}</span>
+                </div>
+
+                
+                <div className="flex flex-col items-end flex-shrink-0">
+                  <span className={`text-body-sm font-semibold ${type === "income" ? "text-income" : "text-expense"}`}>
+                    {type === "income" ? "+" : "-"}${amount}
+                  </span>
+                  <span className="text-body-sm text-muted">{date}</span>
+                </div>
+              </div>
+            ))}
+        </div>
+      </SquareShapes>
+
     </div>
   );
 }
 
 export default Dashboard;
+
