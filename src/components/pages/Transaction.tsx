@@ -1,7 +1,7 @@
 import { getIcon } from "../mini-components/getIcon";
 import { useTransactionStore } from "../../store/useTransactionStore";
 import { useState } from "react";
-import { Search, X } from "lucide-react";
+import { X } from "lucide-react";
 import { formatTransactionDate } from "../../helpers/timeformater";
 
 type Filter = "all" | "income" | "expense";
@@ -23,8 +23,8 @@ function Transaction() {
   });
 
   return (
-    <div className="max-w-4xl sm:m-auto p-6 flex-1">
-      <h3 className="text-xl font-semibold text-zinc-600 mb-4">
+    <div className="max-w-6xl min-w-2xl sm:m-auto p-6 flex-1 bg-white">
+      <h3 className="text-xl font-semibold text-zinc-700 mb-4">
         Recent Transaction
       </h3>
       <div>
@@ -33,22 +33,27 @@ function Transaction() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search through category or title"
-            className="input-base w-full h-full "
+            className="input-base bg-transparent border-0 w-full h-full "
             type="text"
           />
-          <X size={22} onClick={()=>setSearch("")} className="text-zinc-500  cursor-pointer"/>
+          <X
+            size={22}
+            onClick={() => setSearch("")}
+            className="text-zinc-500  cursor-pointer"
+          />
         </div>
-        
+
         <div className="flex gap-4 mb-4 mt-3">
           {(["All", "Expense", "Income"] as const).map((el) => (
             <span
               key={el}
               onClick={() => setResultType(el.toLowerCase())}
-              className={`border h-fit text-sm cursor-pointer rounded-full px-4 hover:bg-brand-100 ${
-                resultType === el.toLowerCase()
-                  ? "bg-brand-100 border-brand-300"
-                  : "border-zinc-400 bg-zinc-200"
-              }`}
+              className={`text-body-sm px-4 py-1.5 rounded-full border transition-colors duration-200 cursor-pointer
+            ${
+              resultType === el.toLowerCase()
+                ? "bg-brand-subtle border-brand-500 text-brand font-medium"
+                : "border-default text-zinc-400 font-semibold hover:bg-surface-2"
+            }`}
             >
               {el}
             </span>
@@ -62,7 +67,7 @@ function Transaction() {
               key={id}
               className="border-b border-strong  px-4 py-2 flex-center gap-2 rounded-lg"
             >
-              <div className="border border-strong w-10 aspect-square flex-center h-fit rounded-lg">
+              <div className="w-9 h-9 rounded-lg bg-surface-2 border border-default flex-center shrink-0">
                 {getIcon(category)}
               </div>
               <div className="flex flex-col flex-1">
@@ -75,7 +80,9 @@ function Transaction() {
                 >
                   {type == "income" ? "+" : "-"} &#8377; {amount}
                 </span>
-                <span className="text-muted text-xs font-semibold">{formatTransactionDate(date)}</span>
+                <span className="text-muted text-xs font-semibold">
+                  {formatTransactionDate(date)}
+                </span>
               </div>
             </div>
           ),

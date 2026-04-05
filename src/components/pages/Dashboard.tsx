@@ -56,8 +56,8 @@ function Dashboard() {
                 key={id}
                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-surface-2 transition-colors duration-200"
               >
-                {/* Icon */}
-                <div className="w-9 h-9 rounded-lg bg-surface-2 border border-default flex-center flex-shrink-0">
+               
+                <div className="w-9 h-9 rounded-lg bg-surface-2 border border-default flex-center shrink-0">
                   <span className="text-base">{getIcon(category)}</span>
                 </div>
 
@@ -70,7 +70,7 @@ function Dashboard() {
                 </div>
 
                 
-                <div className="flex flex-col items-end flex-shrink-0">
+                <div className="flex flex-col items-end shrink-0">
                   <span className={`text-body-sm font-semibold ${type === "income" ? "text-income" : "text-expense"}`}>
                     {type === "income" ? "+" : "-"}${amount}
                   </span>
