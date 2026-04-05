@@ -19,12 +19,12 @@ const colors = ["#FA9538", "#6687FC", "#17B99C", "#FE5656"];
 
 function Insight() {
   return (
-    <div className="flex gap-4 flex-col p-4 lg:p-6 max-w-4xl min-w-3xl mx-auto">
+    <div className="flex flex-col gap-4 p-4 lg:p-6">
 
-      <h3 className="text-xl font-semibold text-zinc-700 mb-4">
-        Recent Transaction
-      </h3>
+      {/* Header */}
+      <h2 className="text-h2 text-heading">Insights</h2>
 
+      {/* Summary Cards */}
       <div className="grid sm:grid-cols-3 gap-3">
         {data2.map(({ title, highlight, conclution, part }) => (
           <SquareShapes className="flex flex-col gap-2" key={title}>
@@ -36,6 +36,7 @@ function Insight() {
         ))}
       </div>
 
+      {/* Monthly Spending */}
       <SquareShapes>
         <h3 className="text-body-md font-semibold text-heading mb-4">
           Monthly Spending
@@ -43,13 +44,13 @@ function Insight() {
         <div className="flex flex-col gap-3">
           {monthlySpend.map(({ month, part, amount }, idx) => (
             <div key={month} className="flex items-center gap-3">
-              <span className="text-body-sm font-medium text-muted w-8 shrink-0">
+              <span className="text-body-sm font-medium text-muted w-8 flex-shrink-0">
                 {month}
               </span>
               <div className="flex-1">
                 <ProgressRow part={part} total={100} color={colors[idx]} />
               </div>
-              <span className="text-body-sm font-semibold text-heading w-20 text-right shrink-0">
+              <span className="text-body-sm font-semibold text-heading w-20 text-right flex-shrink-0">
                 &#8377; {amount}
               </span>
             </div>

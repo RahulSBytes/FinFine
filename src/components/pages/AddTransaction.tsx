@@ -28,7 +28,7 @@ function AddTransaction() {
   const heading = "text-label font-semibold text-zinc-600";
 
   return (
-    <div className="border  bg-white/10 backdrop-blur-sm flex-center flex-col ">
+    <div className="flex flex-col gap-4 p-4 lg:p-6">
       <div className="bg-surface border py-4  px-8">
         <h2 className="text-xl font-semibold text-zinc-600 mb-4">
           Add New Transaction
@@ -42,7 +42,7 @@ function AddTransaction() {
                   type: "expense",
                 }))
               }
-              className={`flex-center font-semibold border  rounded-sm ${trnxData.type == "expense" ? "bg-brand-500 border-brand-500 text-white" : ""}`}
+              className={`flex-center cursor-pointer font-semibold border  rounded-sm ${trnxData.type == "expense" ? "bg-brand-500 border-brand-500 text-white" : ""}`}
             >
               Expence
             </div>
@@ -53,20 +53,19 @@ function AddTransaction() {
                   type: "income",
                 }))
               }
-              className={`flex-center font-semibold border  rounded-sm ${trnxData.type == "income" ? "bg-brand-500 border-brand-500 text-white" : ""}`}
+              className={`flex-center cursor-pointer font-semibold border  rounded-sm ${trnxData.type == "income" ? "bg-brand-500 border-brand-500 text-white" : ""}`}
             >
               Income
             </div>
           </div>
           <div className="flex flex-col">
-            <label htmlFor="" className={heading}>
+            <label htmlFor="amount" className={heading}>
               Amount
             </label>
             <input
               type="number"
               required
-              name=""
-              id=""
+              id="amount"
               placeholder="0.00"
               className="input-base"
               value={trnxData.amount}
@@ -80,24 +79,28 @@ function AddTransaction() {
           </div>
           <div>
             <h4 className={heading}>Category</h4>
-            <div className="grid grid-cols-3 sm:flex flex-wrap mt-1.5 sm:px-4 gap-2">
+            <div className="grid grid-cols-3 xs:grid-cols-4 sm:grid-cols-5 md:grid-cols-6 mt-1.5 px-0 sm:px-4 gap-2">
               {category.map((el, idx) => (
                 <div
                   key={idx}
                   onClick={() =>
                     setTrnxData((prev) => ({ ...prev, category: el }))
                   }
-                  className={`border border-zinc-400 w-24 aspect-square flex-center flex-col rounded-md gap-1 hover:bg-brand-100 hover:border-brand-500/60 ${trnxData.category == el ? "bg-brand-100 border-brand-500/60" : ""}`}
+                  className={`border border-zinc-400 w-full aspect-square flex-center flex-col  rounded-md gap-1 cursor-pointer
+          hover:bg-brand-100 hover:border-brand-500/20 transition-colors duration-150
+          ${trnxData.category === el ? "bg-brand-100 border-brand-500/60" : ""}`}
                 >
-                  <span>{getIcon(el)}</span>
-                  <span className="text-xs font-semibold">{el}</span>
+                  <span className="text-lg sm:text-xl">{getIcon(el)}</span>
+                  <span className="text-[10px] sm:text-xs font-semibold text-center leading-tight px-1">
+                    {el}
+                  </span>
                 </div>
               ))}
             </div>
           </div>
-          <div className="grid grid-cols-2  gap-2">
-            <div className="">
-              <label htmlFor="" className={heading}>
+          <div className="grid grid-cols-2 gap-2">
+            <div >
+              <label htmlFor="date" className={heading}>
                 Date
               </label>
               <input
@@ -105,7 +108,7 @@ function AddTransaction() {
                 required
                 className="input-base"
                 name="date"
-                id=""
+                id="date"
                 value={trnxData.date.split("T")[0]}
                 onChange={(e) =>
                   setTrnxData((prev) => ({
@@ -115,12 +118,13 @@ function AddTransaction() {
                 }
               />
             </div>
-            <div className="">
-              <label htmlFor="" className={heading}>
+            <div >
+              <label htmlFor="methods" className={heading}>
                 Payment Method
               </label>
               <select
                 className="input-base"
+                id="methods"
                 defaultValue={trnxData.paymentMethod}
                 onChange={(e) =>
                   setTrnxData((prev) => ({
@@ -139,14 +143,13 @@ function AddTransaction() {
             </div>
           </div>
           <div className="flex flex-col">
-            <label htmlFor="" className={heading}>
+            <label htmlFor="title" className={heading}>
               Title
             </label>
             <input
               type="text"
-              name=""
               required
-              id=""
+              id="title"
               placeholder="e.g. Salary, Restaurant..."
               className="input-base"
               value={trnxData["title"]}
@@ -159,12 +162,12 @@ function AddTransaction() {
             />
           </div>
           <div className="flex flex-col">
-            <label htmlFor="" className={heading}>
+            <label htmlFor="note" className={heading}>
               Note (Optional)
             </label>
             <textarea
               name=""
-              id=""
+              id="note"
               value={trnxData["note"]}
               onChange={(e) =>
                 setTrnxData((prev) => ({

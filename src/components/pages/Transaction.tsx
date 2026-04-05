@@ -23,7 +23,7 @@ function Transaction() {
   });
 
   return (
-    <div className="max-w-6xl min-w-2xl sm:m-auto p-6 flex-1 bg-white">
+    <div className="flex flex-col gap-4 p-4 lg:p-6 bg-white">
       <h3 className="text-xl font-semibold text-zinc-700 mb-4">
         Recent Transaction
       </h3>

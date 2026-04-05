@@ -1,7 +1,11 @@
 
+import { LayoutDashboard, ArrowLeftRight, Lightbulb, PlusCircle, type LucideIcon } from "lucide-react";
+
+
   export type Navs ={
     label : string,
-    to : string
+    to : string,
+    icon : LucideIcon
   }[]
 
 
@@ -26,12 +30,14 @@
   ];
 
 
-  export const navs:Navs = [
-    { label: "Dashboard", to: "/" },
-    { label: "Transaction", to: "transactions" },
-    { label: "Insights", to: "insights" },
-    { label: "Add Transaction", to: "add" },
-  ];
+ // constants.ts
+
+export const navs: Navs = [
+  { label: "Dashboard",       to: "/",            icon: LayoutDashboard },
+  { label: "Transaction",     to: "transactions", icon: ArrowLeftRight },
+  { label: "Insights",        to: "insights",     icon: Lightbulb },
+  { label: "Add Transaction", to: "add",          icon: PlusCircle },
+];
 
 
   export const data1:Data1 = [
@@ -46,3 +52,5 @@
     { title: "Avg Daily Spend", highlight: 8563, conclution: "12% vs last month", part: 45 },
     { title: "Saving This Month", highlight: 32563, conclution: "8% vs last month", part: 80 },
   ];
+
+
