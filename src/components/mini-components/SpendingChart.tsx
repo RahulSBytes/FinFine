@@ -30,7 +30,7 @@ export default function SpendingChart (){
         ))}
       </Pie>
       <Tooltip
-        formatter={(value) => [`$${value.toLocaleString()}`, "Spent"]}
+        formatter={(value) => [`$${value?.toLocaleString()}`, "Spent"]}
         contentStyle={{
           background: "#FFFFFF",
           border: "0.5px solid #E8ECF0",

@@ -1,24 +1,27 @@
 import { useState } from "react";
 import { category } from "../../constants/constants";
 import { getIcon } from "../mini-components/getIcon";
+import { useTransactionStore } from "../../store/useTransactionStore";
+import type { Transaction } from "../../constants/dummyTransactions";
 
-const initialTransaction = {
+const initialTransaction: Transaction = {
   id: "",
   title: "",
   category: "",
-  type: "Expence",
+  type: "expense",
   amount: 0,
-  date: new Date(),
+  date: "",
   paymentMethod: "",
   note: "",
 };
 
 function AddTransaction() {
-  const [trnxData, setTrnxData] = useState(initialTransaction);
+  const [trnxData, setTrnxData] = useState<Transaction>(initialTransaction);
+  const addTransaction = useTransactionStore((state) => state.addTransaction);
 
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(trnxData);
+    addTransaction({ ...trnxData, id: crypto.randomUUID() });
     setTrnxData(initialTransaction);
   };
 
@@ -36,10 +39,10 @@ function AddTransaction() {
               onClick={() =>
                 setTrnxData((prev) => ({
                   ...prev,
-                  type: "Expence",
+                  type: "expense",
                 }))
               }
-              className={`flex-center font-semibold border  rounded-sm ${trnxData.type == "Expence" ? "bg-brand-500 border-brand-500 text-white" : ""}`}
+              className={`flex-center font-semibold border  rounded-sm ${trnxData.type == "expense" ? "bg-brand-500 border-brand-500 text-white" : ""}`}
             >
               Expence
             </div>
@@ -47,10 +50,10 @@ function AddTransaction() {
               onClick={() =>
                 setTrnxData((prev) => ({
                   ...prev,
-                  type: "Income",
+                  type: "income",
                 }))
               }
-              className={`flex-center font-semibold border  rounded-sm ${trnxData.type == "Income" ? "bg-brand-500 border-brand-500 text-white" : ""}`}
+              className={`flex-center font-semibold border  rounded-sm ${trnxData.type == "income" ? "bg-brand-500 border-brand-500 text-white" : ""}`}
             >
               Income
             </div>
@@ -103,11 +106,11 @@ function AddTransaction() {
                 className="input-base"
                 name="date"
                 id=""
-                value={trnxData.date.toISOString().split("T")[0]}
+                value={trnxData.date.split("T")[0]}
                 onChange={(e) =>
                   setTrnxData((prev) => ({
                     ...prev,
-                    date: new Date(e.target.value),
+                    date: e.target.value,
                   }))
                 }
               />

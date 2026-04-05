@@ -39,7 +39,7 @@ export default function BalanceChart() {
           tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`}
         />
         <Tooltip
-          formatter={(value) => [`$${value.toLocaleString()}`, "Balance"]}
+          formatter={(value) => [`$${value?.toLocaleString()}`, "Balance"]}
           contentStyle={{
             background: "#FFFFFF",
             border: "0.5px solid #E8ECF0",
