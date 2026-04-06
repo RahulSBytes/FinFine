@@ -5,10 +5,17 @@ import Insigt from "./components/pages/Insight";
 import Transaction from "./components/pages/Transaction";
 import AddTransaction from "./components/pages/AddTransaction";
 import NotFound from "./components/pages/NotFound";
-
-
+import { useThemeStore } from "./store/useThemeStore";
+import { useEffect } from "react";
 
 export default function App() {
+  const isDark = useThemeStore((s) => s.isDark);
+
+  
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", isDark);
+  }, []);
+
   return (
     <Routes>
       <Route element={<Layout />}>
@@ -21,4 +28,3 @@ export default function App() {
     </Routes>
   );
 }
-

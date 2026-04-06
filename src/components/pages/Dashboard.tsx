@@ -1,13 +1,34 @@
 import SquareShapes from "../wrapper/SquareShapes";
 import { getIcon } from "../mini-components/getIcon";
-import { data1 } from "../../constants/constants";
+// import { data1 } from "../../constants/constants";
 import BalanceChart from "../mini-components/BalanceChart";
 import SpendingChart from "../mini-components/SpendingChart";
 import { useTransactionStore } from "../../store/useTransactionStore";
+import { useFinancialSummary } from "../../hook/useFinancialSummary";
 
 function Dashboard() {
-
   const transactions = useTransactionStore((s) => s.transactions);
+  const { income, expense, savingAmount, categoryBreakdown } =
+    useFinancialSummary();
+
+  console.log("categoryBreakdown ::", categoryBreakdown);
+
+  const savingRate = income > 0 ? ((income - expense) / income) * 100 : 0;
+
+  const data1 = [
+    {
+      title: "TOTAL BALANCE",
+      amount: savingAmount,
+      conclution: "8% this month",
+    },
+    { title: "INCOME", amount: income, conclution: "12% vs last month" },
+    { title: "EXPENCES", amount: expense, conclution: "8% vs last month" },
+    {
+      title: "SAVING RATE",
+      amount: savingRate.toFixed(2) + "%",
+      conclution: "On track",
+    },
+  ];
 
   return (
     <div className="flex flex-col gap-4 p-4 lg:p-6">
@@ -33,7 +54,7 @@ function Dashboard() {
           <h3 className="text-body-md font-semibold text-heading mb-4">
             Spending Breakdown
           </h3>
-          <SpendingChart />
+          <SpendingChart data={categoryBreakdown} />
         </SquareShapes>
       </div>
 

@@ -7,20 +7,17 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
+import { useFinancialSummary } from "../../hook/useFinancialSummary";
 
-const data = [
-  { month: "Oct", balance: 18000 },
-  { month: "Nov", balance: 20500 },
-  { month: "Dec", balance: 19000 },
-  { month: "Jan", balance: 22000 },
-  { month: "Feb", balance: 21000 },
-  { month: "Mar", balance: 24563 },
-];
 
 export default function BalanceChart() {
+
+ const { monthlySpending } =
+    useFinancialSummary();
+
   return (
-    <ResponsiveContainer  width="100%" height={200}>
-      <BarChart data={data} barSize={28}>
+    <ResponsiveContainer width="100%" height={200}>
+      <BarChart data={monthlySpending} barSize={28}>
         <CartesianGrid
           strokeDasharray="3 3"
           vertical={false}
@@ -47,7 +44,7 @@ export default function BalanceChart() {
             fontSize: "13px",
           }}
         />
-        <Bar dataKey="balance" fill="#1A7F5A" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="total" fill="#1A7F5A" radius={[4, 4, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>
   );

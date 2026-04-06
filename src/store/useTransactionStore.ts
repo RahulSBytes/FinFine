@@ -19,28 +19,24 @@ export const useTransactionStore = create<TransactionStore>()(
     (set) => ({
       transactions: initialData,
       role: "admin",
-
       addTransaction: (transaction) =>
-        set((state) => ({
-          transactions: [transaction, ...state.transactions],
-        })),
-
+        set((state) => ({ transactions: [transaction, ...state.transactions] })),
       editTransaction: (id, updated) =>
         set((state) => ({
           transactions: state.transactions.map((t) =>
             t.id === id ? { ...t, ...updated } : t
           ),
         })),
-
       deleteTransaction: (id) =>
         set((state) => ({
           transactions: state.transactions.filter((t) => t.id !== id),
         })),
-
       setRole: (role) => set({ role }),
     }),
     {
-      name: "finflow-storage", 
+      name: "finflow-storage",
+      version: 2, // ← bump this every time you change initialData
+      migrate: () => ({ transactions: initialData, role: "admin" as Role }), 
     }
   )
-)
+);

@@ -2,6 +2,9 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "./ui/Sidebar";
 import Navbar from "./ui/Navbar";
 
+import { Toaster } from "react-hot-toast";
+
+
 // Layout.tsx
 function Layout() {
   return (
@@ -22,6 +25,7 @@ function Layout() {
           <Outlet />
         </main>
       </div>
+      <Toaster  position="bottom-center" />
     </div>
   );
 }
