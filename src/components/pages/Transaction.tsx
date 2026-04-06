@@ -3,7 +3,7 @@ import { useTransactionStore } from "../../store/useTransactionStore";
 import { useState } from "react";
 import { X } from "lucide-react";
 import { formatTransactionDate } from "../../helpers/timeformater";
-import type { Transaction } from "../../constants/dummyTransactions";
+import type { Transaction as TransactionType } from "../../constants/dummyTransactions";
 import { category as categories } from "../../constants/constants";
 
 type Filter = "all" | "income" | "expense";
@@ -16,9 +16,9 @@ function Transaction() {
   const [search, setSearch] = useState("");
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [editData, setEditData] = useState<Partial<Transaction>>({});
+  const [editData, setEditData] = useState<Partial<TransactionType>>({});
 
-  const handleEdit = (t: Transaction) => {
+  const handleEdit = (t: TransactionType) => {
     setEditingId(t.id);
     setEditData({
       title: t.title,
@@ -85,7 +85,7 @@ function Transaction() {
           {(["All", "Expense", "Income"] as const).map((el) => (
             <span
               key={el}
-              onClick={() => setResultType(el.toLowerCase())}
+              onClick={() => setResultType(el.toLowerCase() as Filter)}
               className={`text-body-sm px-3.5 md:px-4 py-1.5 rounded-full border text-sm transition-all duration-150 cursor-pointer select-none
             ${
               resultType === el.toLowerCase()

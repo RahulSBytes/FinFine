@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Dashboard from "./components/pages/Dashboard";
 import Insigt from "./components/pages/Insight";
-import Transaction from "./components/pages/Transaction";
+import TransactionsPage from "./components/pages/Transaction";
 import AddTransaction from "./components/pages/AddTransaction";
 import NotFound from "./components/pages/NotFound";
 import { useThemeStore } from "./store/useThemeStore";
@@ -20,7 +20,7 @@ export default function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Dashboard />} />
-        <Route path="transactions" element={<Transaction />} />
+        <Route path="transactions" element={<TransactionsPage />} />
         <Route path="insights" element={<Insigt />} />
         <Route path="add" element={<AddTransaction />} />
       </Route>
