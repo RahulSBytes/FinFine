@@ -22,8 +22,8 @@ function AddTransaction() {
 
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // addTransaction({ ...trnxData, id: crypto.randomUUID() });
-    // setTrnxData(initialTransaction);
+    addTransaction({ ...trnxData, id: crypto.randomUUID() });
+    setTrnxData(initialTransaction);
     toast.success("New transaction added 😀")
   };
 
@@ -108,14 +108,13 @@ return (
                   setTrnxData((prev) => ({ ...prev, category: el }))
                 }
                 className={`border w-full aspect-square flex-center flex-col rounded-xl gap-1 cursor-pointer 
-                border-zinc-200 bg-white/90 dark:bg-zinc-800 dark:border-zinc-500
-                hover:bg-brand-100/60 hover:border-brand-500/40 dark:hover:bg-brand-500/60 dark:hover:border-brand-300/40 hover:shadow-md hover:-translate-y-px
+                 hover:shadow-md hover:-translate-y-px
                 shadow-[0_1px_0_rgba(15,23,42,0.03)]
                 transition-all duration-150
                 ${
                   trnxData.category === el
-  ? "bg-red-500 border-red-500 text-white"
-  : ""
+                    ? "bg-brand-50 border-brand-300 shadow-sm dark:border-brand-600"
+                    : ""
                 }`}
               >
                 <span className="text-lg sm:text-xl">{getIcon(el)}</span>

@@ -5,13 +5,14 @@ import BalanceChart from "../mini-components/BalanceChart";
 import SpendingChart from "../mini-components/SpendingChart";
 import { useTransactionStore } from "../../store/useTransactionStore";
 import { useFinancialSummary } from "../../hook/useFinancialSummary";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const transactions = useTransactionStore((s) => s.transactions);
   const { income, expense, savingAmount, categoryBreakdown } =
     useFinancialSummary();
 
-  console.log("categoryBreakdown ::", categoryBreakdown);
+  const navigate = useNavigate()
 
   const savingRate = income > 0 ? ((income - expense) / income) * 100 : 0;
 
@@ -35,9 +36,9 @@ function Dashboard() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {data1.map(({ title, amount, conclution }) => (
           <SquareShapes key={title} className="flex flex-col gap-1 w-full">
-            <span className="text-label text-muted">{title}</span>
+            <span className="text-label text-body">{title}</span>
             <span className="text-h2 text-heading font-bold">{amount}</span>
-            <span className="text-body-sm text-muted">{conclution}</span>
+            <span className="text-body-sm text-body">{conclution}</span>
           </SquareShapes>
         ))}
       </div>
@@ -63,7 +64,7 @@ function Dashboard() {
           <h3 className="text-body-md font-semibold text-heading">
             Recent Transactions
           </h3>
-          <button className="text-body-sm text-brand hover:underline">
+          <button onClick={()=>navigate('/transactions')} className="text-body-sm text-brand hover:underline">
             View all
           </button>
         </div>
