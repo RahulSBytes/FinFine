@@ -33,28 +33,30 @@ function Sidebar() {
         </button>
       </div>
 
-
       <nav className="flex-1 overflow-y-auto py-3 px-2 flex flex-col gap-1">
-        {navs.map(({ to, label, icon: Icon }) => (
-          <NavLink
-            key={to}
-            to={to}
-            title={collapsed ? label : undefined}
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-2 py-2 rounded-md text-sm font-medium
+        {navs.map(({ to, label, icon: Icon }) => {
+          if (to == "add" && role == "viewer") return;
+          return (
+            <NavLink
+              key={to}
+              to={to}
+              title={collapsed ? label : undefined}
+              className={({ isActive }) =>
+                `flex items-center gap-3 px-2 py-2 rounded-md text-sm font-medium
                transition-colors duration-150 cursor-pointer
                ${
                  isActive
                    ? "bg-brand-100 text-brand border border-brand-500/60"
-                   : "text-gray-500 hover:bg-surface-2 hover:text-gray-800 border border-transparent"
+                   : "text-gray-500 hover:bg-surface-2 hover:text-gray-800 dark:hover:text-zinc-300 border border-transparent"
                }
                ${collapsed ? "justify-center" : ""}`
-            }
-          >
-            {Icon && <Icon size={18} className="shrink-0" />}
-            {!collapsed && <span className="truncate">{label}</span>}
-          </NavLink>
-        ))}
+              }
+            >
+              {Icon && <Icon size={18} className="shrink-0" />}
+              {!collapsed && <span className="truncate">{label}</span>}
+            </NavLink>
+          );
+        })}
       </nav>
 
       <div className="border-t border-strong px-3 py-3 shrink-0 flex flex-col gap-1">
@@ -63,7 +65,7 @@ function Sidebar() {
           onClick={toggleTheme}
           title={isDark ? "Switch to Light" : "Switch to Dark"}
           className={`flex items-center gap-3 w-full px-2 py-2 rounded-md text-sm font-medium
-      text-gray-500 hover:bg-surface-2 hover:text-gray-800 transition-colors cursor-pointer
+      text-gray-500 hover:bg-surface-2 hover:text-gray-800 dark:hover:text-zinc-300 transition-colors cursor-pointer
       ${collapsed ? "justify-center" : ""}`}
         >
           {isDark ? <Moon size={18} /> : <Sun size={18} fill="yellow" />}
@@ -74,7 +76,7 @@ function Sidebar() {
         <button
           onClick={() => setRole(role === "admin" ? "viewer" : "admin")}
           title={`Switch to ${role === "admin" ? "Viewer" : "Admin"}`}
-          className={`flex items-center gap-3 w-full px-2 py-2 rounded-md text-sm font-medium
+          className={`flex items-center gap-3 w-full px-2 py-2 dark:hover:text-zinc-300 rounded-md text-sm font-medium
       text-gray-500 hover:bg-surface-2 hover:text-gray-800 transition-colors cursor-pointer
       ${collapsed ? "justify-center" : ""}`}
         >
