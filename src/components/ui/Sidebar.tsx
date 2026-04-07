@@ -19,7 +19,6 @@ function Sidebar() {
         ${collapsed ? "w-16" : "w-56"}
       `}
     >
-      {/* Header */}
       <div className="flex items-center justify-between h-12 px-3 border-b border-strong shrink-0">
         {!collapsed && (
           <Link to="/" className="text-xl font-semibold truncate">
@@ -34,7 +33,7 @@ function Sidebar() {
         </button>
       </div>
 
-      {/* Nav Links */}
+
       <nav className="flex-1 overflow-y-auto py-3 px-2 flex flex-col gap-1">
         {navs.map(({ to, label, icon: Icon }) => (
           <NavLink
@@ -58,7 +57,6 @@ function Sidebar() {
         ))}
       </nav>
 
-      {/* Footer — Dark mode toggle */}
       <div className="border-t border-strong px-3 py-3 shrink-0 flex flex-col gap-1">
         {/* Theme Toggle */}
         <button

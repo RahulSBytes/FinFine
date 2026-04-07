@@ -4,6 +4,7 @@ import { getIcon } from "../mini-components/getIcon";
 import { useTransactionStore } from "../../store/useTransactionStore";
 import type { Transaction } from "../../constants/dummyTransactions";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const initialTransaction: Transaction = {
   id: "",
@@ -19,6 +20,11 @@ const initialTransaction: Transaction = {
 function AddTransaction() {
   const [trnxData, setTrnxData] = useState<Transaction>(initialTransaction);
   const addTransaction = useTransactionStore((state) => state.addTransaction);
+  const role = useTransactionStore((state) => state.role);
+  const navigate = useNavigate()
+
+
+  if(role === "viewer") navigate('/')
 
   const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();

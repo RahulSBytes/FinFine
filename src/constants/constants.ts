@@ -30,13 +30,11 @@ import { LayoutDashboard, ArrowLeftRight, Lightbulb, PlusCircle, type LucideIcon
   ];
 
 
- // constants.ts
-
 export const navs: Navs = [
   { label: "Dashboard",       to: "/",            icon: LayoutDashboard },
   { label: "Transaction",     to: "transactions", icon: ArrowLeftRight },
   { label: "Insights",        to: "insights",     icon: Lightbulb },
-  { label: "Add Transaction", to: "add",          icon: PlusCircle },
+  { label: "Add Transaction", to:  "add",          icon: PlusCircle },
 ];
 
 

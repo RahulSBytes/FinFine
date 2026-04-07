@@ -7,6 +7,10 @@ import { Toaster } from "react-hot-toast";
 
 // Layout.tsx
 function Layout() {
+
+
+
+  
   return (
     <div className="flex h-screen w-full overflow bg-surface-2">
       {/* Sidebar — visible on md and above */}

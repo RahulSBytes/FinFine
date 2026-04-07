@@ -2,21 +2,21 @@ import { Menu, Moon, Sun, X } from "lucide-react";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { navs } from "../../constants/constants.ts";
+import { useThemeStore } from "../../store/useThemeStore.ts";
+import { useTransactionStore } from "../../store/useTransactionStore.ts";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+  const { isDark, toggleTheme } = useThemeStore();
+  const { role, setRole } = useTransactionStore();
 
   return (
     <nav className="border border-strong flex-between h-12 px-3  sticky top-0 z-40 bg-surface-2">
-      <Link to={'/'} className="text-xl font-semibold">
+      <Link to={"/"} className="text-xl font-semibold">
         Fin<span className="text-brand ">Flow</span>
       </Link>
       <div className="flex gap-4">
-        <div
-          className="cursor-pointer"
-          onClick={() => setIsDark((prev) => !prev)}
-        >
+        <div className="cursor-pointer" onClick={toggleTheme}>
           {isDark ? <Moon fill="" /> : <Sun fill="yellow" />}
         </div>
         <div
@@ -36,9 +36,10 @@ function Navbar() {
             >
               <X className="mb-4 cursor-pointer" />
             </div>
-            <ul className="flex flex-col gap-3">
-              {navs.map(({ to, label }) => (
-                <li
+            <ul className="flex flex-col gap-3 relative  h-full">
+              {navs.map(({ to, label }) => {
+                if(to == "add" && role == "viewer") return;
+              return  <li
                   key={to}
                   onClick={() => setMenuOpen(false)}
                   className=" rounded-sm p-2 bg-surface cursor-pointer"
@@ -52,7 +53,16 @@ function Navbar() {
                     {label}{" "}
                   </NavLink>
                 </li>
-              ))}
+              })}
+
+              <li
+                onClick={() => setRole(role === "admin" ? "viewer" : "admin")}
+                className={`flex  gap-3 w-full absolute bottom-10 px-2 py-2 rounded-md text-sm font-medium border  items-center  dark:border-brand-500
+      text-gray-500 hover:bg-surface-2 hover:text-gray-800  dark:hover:text-zinc-300 transition-colors cursor-pointer
+      ${menuOpen ? "justify-center" : ""}`}
+              >
+                {`Switch to ${role === "admin" ? "Viewer" : "Admin"}`}
+              </li>
             </ul>
           </div>
         </section>

@@ -13,6 +13,7 @@ function Transaction() {
   const transactions = useTransactionStore((s) => s.transactions);
   const editTransaction = useTransactionStore((s) => s.editTransaction);
   const deleteTransaction = useTransactionStore((s) => s.deleteTransaction);
+  const role = useTransactionStore((s) => s.role);
   const [search, setSearch] = useState("");
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -170,7 +171,7 @@ function Transaction() {
                           </span>
                           <span>{note ?? "Nothing was noted"}</span>
                         </div>
-                        <div className="flex gap-3 mt-1">
+                       {role=="admin" && <div className="flex gap-3 mt-1">
                           <button
                             onClick={() =>
                               handleEdit({
@@ -194,7 +195,7 @@ function Transaction() {
                           >
                             Delete
                           </button>
-                        </div>
+                        </div>}
                       </>
                     ) : (
                       <>
